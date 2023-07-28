@@ -67,6 +67,8 @@ span {
 .Menu_bar {
   display: none;
 }
+
+/* responsive layout */
 @media (max-width: 1060px) {
   .Menu_bar {
     display: block;

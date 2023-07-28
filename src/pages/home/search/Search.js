@@ -88,7 +88,9 @@ export default function Search({ input }) {
               return <Card key={item.id} movie={item}></Card>;
             })
           ) : (
-            <div className="load">No search results for "{searchitem}"</div>
+            <div className="searchpage">
+              No search results for "{searchitem}"
+            </div>
           )}
         </div>
       ) : (

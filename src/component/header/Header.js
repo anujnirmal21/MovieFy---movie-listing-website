@@ -12,47 +12,6 @@ export default function Header({ inputValue }) {
   return (
     <div className="header">
       <div className="header-left">
-        {/* Appear menu bar on for small widht devices */}
-
-        <div className="Menu_bar">
-          <button className="menu_icon"></button>
-          <div className="menu_list">
-            <div className="userInfo">
-              {isAuthenticated ? (
-                <div className="username">
-                  <div className="user">
-                    <span>Welcome,</span>
-                    <span>{user.nickname}</span>
-                  </div>
-                  <button
-                    className="auth"
-                    onClick={() =>
-                      logout({
-                        logoutParams: { returnTo: window.location.origin },
-                      })
-                    }
-                  >
-                    Sign Out
-                  </button>
-                </div>
-              ) : (
-                <button className="auth" onClick={() => loginWithRedirect()}>
-                  Sign In
-                </button>
-              )}
-            </div>
-
-            <Link to="/" style={{ textDecoration: "none" }}>
-              <span>Discover</span>
-            </Link>
-            <Link to="/" style={{ textDecoration: "none" }}>
-              <span>Browse</span>
-            </Link>
-            <Link to="/news" style={{ textDecoration: "none" }}>
-              <span>News</span>
-            </Link>
-          </div>
-        </div>
         <Link to="/" style={{ textDecoration: "none" }}>
           <div className="logo">
             <img
