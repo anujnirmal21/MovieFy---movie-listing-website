@@ -1,0 +1,85 @@
+.header {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  background: rgb(18, 18, 18);
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  column-gap: 4%;
+  margin-left: 1vw;
+}
+.header-right {
+  display: flex;
+  flex-direction: column;
+}
+
+#page:hover {
+  color: red;
+}
+
+.fa,
+.fas {
+  font-weight: 900;
+  margin-left: 10px;
+}
+
+span {
+  color: white;
+  font-size: large;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.auth {
+  height: 33px;
+  width: 100px;
+  margin-right: 10px;
+  background: transparent;
+  border: 1px solid whitesmoke;
+  color: rgb(245, 245, 245);
+  font-family: sans-serif;
+  font-weight: 500;
+  font-size: medium;
+  border-radius: 5px;
+}
+
+.auth:hover {
+  background-color: red;
+  border: transparent;
+}
+
+.username .user {
+  display: flex;
+  flex-direction: column;
+}
+.username {
+  display: flex;
+  column-gap: 10%;
+}
+
+.Menu_bar {
+  display: none;
+}
+@media (max-width: 1060px) {
+  .Menu_bar {
+    display: block;
+    height: 100%;
+  }
+  .menu_list {
+    position: relative;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    top: 100px;
+  }
+  #page {
+    display: none;
+  }
+}

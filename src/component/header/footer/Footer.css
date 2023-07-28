@@ -1,0 +1,41 @@
+.footersection {
+  background-color: #211f1fb3;
+  color: rgb(245, 245, 245);
+  font-family: sans-serif;
+  height: 40vh;
+}
+.sec {
+  height: inherit;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.auth1 {
+  color: #5799ef;
+  background-color: #222222;
+  width: 189px;
+  height: 45px;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: medium;
+}
+
+.auth1:hover {
+  color: white;
+  background-color: #3b89ed;
+  border: transparent;
+}
+
+.icon {
+  height: 30px;
+  width: 30px;
+}
+
+.socialmedia {
+  display: flex;
+  column-gap: 30%;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,111 @@
+.cards {
+  display: inline-block;
+  transition: transform 0.2s;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1rem;
+  cursor: pointer;
+  min-width: 200px;
+  height: 300px;
+  z-index: 0;
+  border: 1px solid rgb(99, 99, 99);
+}
+
+.cards:hover {
+  transform: scale(1.2);
+  z-index: 1000;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.cards_img {
+  height: 300px;
+  width: 100%;
+}
+
+.card_overlay {
+  position: absolute;
+  padding: 0 1rem 1rem 1rem;
+  bottom: 0px;
+  height: 290px;
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  justify-content: flex-end;
+  background-image: linear-gradient(rgb(0, 0, 0, 0), rgb(0, 0, 0, 1));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.card_overlay:hover {
+  opacity: 1;
+}
+
+.cards_title {
+  font-weight: 900;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.card_runtime {
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.card_rating {
+  float: right;
+}
+
+.card_description {
+  font-style: italic;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+#wishbtn {
+  background: transparent;
+  border: transparent;
+}
+
+#wished {
+  color: red;
+}
+#wished-rmv {
+  background: transparent;
+  border: transparent;
+}
+.fa-heart {
+  color: rgba(255, 255, 255, 0.481);
+}
+.wishItem {
+  position: absolute;
+  left: 9rem;
+  top: 1rem;
+}
+
+.fa-heart:hover {
+  color: rgba(255, 0, 0, 0.649);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .cards {
+    min-width: 150px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards_img {
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card_overlay {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    height: 160px;
+  }
+}

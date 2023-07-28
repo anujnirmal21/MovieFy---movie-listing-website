@@ -1,0 +1,77 @@
+.searchpage {
+  height: 46.5vh;
+  font-size: xx-small;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-weight: 100;
+}
+.search_bar {
+  display: flex;
+  height: 40px;
+  min-width: 230px;
+  width: 18vw;
+  border-radius: 24px;
+  text-align: center;
+  align-items: center;
+  background: rgb(32, 32, 32);
+}
+
+.searchWord {
+  margin: 10px;
+}
+.searchSection {
+  margin: 2vh;
+}
+.content {
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+}
+.search {
+  border: none;
+  outline: none;
+  background: rgb(32, 32, 32);
+  color: rgb(154, 15, 15);
+}
+input[type="text"] {
+  height: 100%;
+  width: 80%;
+  margin-right: 15.62px;
+  background: rgb(32, 32, 32);
+  border: transparent;
+  font-size: medium;
+  color: rgb(200, 198, 198);
+  outline: none;
+}
+.suggestion {
+  background-color: black;
+  height: fit-content;
+  width: 31rem;
+  position: relative;
+  left: 1rem;
+  top: 0vh;
+  right: 1vw;
+  border: 3px solid #a0a0a038;
+  border-radius: 10px;
+  overflow: scroll;
+  cursor: pointer;
+  padding-bottom: 15px;
+  display: none;
+}
+.blockSearch {
+  margin-left: 2rem;
+  margin-top: 10px;
+}
+
+.blockSearch > span {
+  font-size: medium;
+  font-style: italic;
+}
+.blockSearch > span:hover {
+  border-bottom: 1px solid red;
+  width: inherit;
+}
+
+#visible {
+  display: block;
+}

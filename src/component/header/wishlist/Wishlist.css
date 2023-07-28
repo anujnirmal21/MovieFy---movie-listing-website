@@ -1,0 +1,37 @@
+.wishlist {
+  padding: 0 3rem 3rem 3rem;
+  position: relative;
+}
+.fa-plus {
+  position: absolute;
+  right: 41%;
+  top: 41%;
+}
+span {
+  margin-left: 5px;
+}
+#scroll:hover {
+  color: red;
+}
+#scroll {
+  background-color: transparent;
+  color: white;
+}
+.guestauth {
+  border: none;
+  background-color: transparent;
+  color: rgba(35, 35, 212, 0.74);
+  font-size: 22px;
+  font-family: sans-serif;
+  font-style: italic;
+}
+.guestauth:hover {
+  color: blue;
+  font-weight: 100;
+  border-bottom: 1px solid blue;
+}
+.guest {
+  height: 20vh;
+  margin-left: 27vw;
+  margin-top: 13vh;
+}

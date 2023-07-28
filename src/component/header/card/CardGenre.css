@@ -1,0 +1,53 @@
+.imgItem {
+  height: 200px;
+  width: 300px;
+  border-radius: 4px;
+}
+.imgItem:hover {
+  background-color: gray;
+}
+.section {
+  display: flex;
+  column-gap: 10%;
+  margin-bottom: 10vh;
+  margin-top: 10vh;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgb(245, 245, 245);
+  font-family: sans-serif;
+  padding-bottom: 40px;
+  position: relative;
+}
+.title {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: x-large;
+  padding-bottom: 20px;
+}
+.content {
+  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.uploadTime {
+  position: absolute;
+  right: 0;
+  font-size: small;
+  padding-top: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#Link {
+  text-decoration: none;
+  color: rgb(245, 245, 245);
+}
+.sectionCards {
+  display: block;
+  transition: transform 0.2s;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1rem;
+  cursor: pointer;
+  min-width: 300px;
+  height: 200px;
+  z-index: 0;
+  border: 1px solid rgb(99, 99, 99);
+}

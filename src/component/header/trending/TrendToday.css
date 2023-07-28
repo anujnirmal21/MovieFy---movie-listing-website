@@ -1,0 +1,19 @@
+.featured {
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  padding: 3rem 3rem 3rem 3rem;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(223, 18, 18, 0.7596288515406162) 80%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+h2 {
+  margin: 10vh;
+}
+
+.control-arrow {
+  background-color: red;
+}
