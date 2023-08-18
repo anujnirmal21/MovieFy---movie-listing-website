@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Header({ inputValue }) {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const [openMenu, setMenu] = useState(false);
   function handleChange(e) {
     inputValue(e.target.value);
+  }
+
+  function handleToggle(e) {
+    setMenu(!openMenu);
   }
 
   return (
@@ -22,7 +27,7 @@ export default function Header({ inputValue }) {
               height="40"
             />
             <p className="logo_txt">
-              <span>MovieFy</span>
+              <span id="h-2">MovieFy</span>
             </p>
           </div>
         </Link>
@@ -53,8 +58,67 @@ export default function Header({ inputValue }) {
           <span id="page">News</span>
         </Link>
       </div>
-      <div className="header-right" id="page">
-        <div className="userInfo">
+      <div className="header-right">
+        <div className="dropdown">
+          <button className="toggler" onClick={handleToggle}>
+            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+          </button>
+          {/* menu state */}
+
+          {openMenu ? (
+            <ul className="item_block">
+              <li className="item">
+                <div className="userInfo">
+                  {isAuthenticated ? (
+                    <div className="username">
+                      <div className="user">
+                        <span>Welcome,</span>
+                        <span>{user.nickname}</span>
+                      </div>
+                      <button
+                        className="auth"
+                        onClick={() =>
+                          logout({
+                            logoutParams: { returnTo: window.location.origin },
+                          })
+                        }
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      className="auth"
+                      onClick={() => loginWithRedirect()}
+                    >
+                      Sign In
+                    </button>
+                  )}
+                </div>
+              </li>
+              <li className="item">
+                <Link to="/" style={{ textDecoration: "none" }}>
+                  <span>Discover</span>
+                </Link>
+              </li>
+              <li className="item">
+                <Link to="/" style={{ textDecoration: "none" }}>
+                  <span>Browse</span>
+                </Link>
+              </li>
+              <li className="item">
+                <Link to="/news" style={{ textDecoration: "none" }}>
+                  <span>News</span>
+                </Link>
+              </li>
+            </ul>
+          ) : (
+            <></>
+          )}
+        </div>
+        {/* end menu */}
+
+        <div className="userInfo" id="page">
           {isAuthenticated ? (
             <div className="username">
               <div className="user">

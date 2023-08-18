@@ -1,7 +1,4 @@
 .featured {
-  margin-top: 10vh;
-  margin-bottom: 10vh;
-  padding: 3rem 3rem 3rem 3rem;
   background: rgb(131, 58, 180);
   background: linear-gradient(
     90deg,
@@ -10,10 +7,22 @@
     rgba(252, 176, 69, 1) 100%
   );
 }
+.trend_card {
+  padding: 5rem;
+}
+.carousel * {
+  box-sizing: content-box;
+}
 h2 {
-  margin: 10vh;
+  margin: 5vw;
 }
 
 .control-arrow {
   background-color: red;
+}
+
+@media (max-width: 960px) {
+  .trend_card {
+    padding: 0rem;
+  }
 }

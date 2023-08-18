@@ -32,7 +32,7 @@
   height: 290px;
   display: flex;
   flex-direction: column;
-  width: 85%;
+  width: auto;
   justify-content: flex-end;
   background-image: linear-gradient(rgb(0, 0, 0, 0), rgb(0, 0, 0, 1));
   opacity: 0;
@@ -92,20 +92,19 @@
 
 @media screen and (max-width: 768px) {
   .cards {
-    min-width: 150px;
-    height: 200px;
+    min-width: 90px;
+    height: 120px;
   }
-}
-
-@media screen and (max-width: 768px) {
   .cards_img {
-    height: 200px;
+    height: 120px;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .card_overlay {
-    padding: 0 0.5rem 0.5rem 0.5rem;
-    height: 160px;
+@media (hover: none) {
+  .cards:hover {
+    transform: none;
+  }
+  .card_overlay:hover {
+    opacity: 0;
   }
 }

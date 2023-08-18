@@ -1,15 +1,13 @@
 .wishlist {
-  padding: 0 3rem 3rem 3rem;
+  padding: 0rem 3rem 3rem 9rem;
   position: relative;
 }
 .fa-plus {
   position: absolute;
-  right: 41%;
+  right: 42%;
   top: 41%;
 }
-span {
-  margin-left: 5px;
-}
+
 #scroll:hover {
   color: red;
 }
@@ -34,4 +32,10 @@ span {
   height: 20vh;
   margin-left: 27vw;
   margin-top: 13vh;
+}
+
+@media (max-width: 960px) {
+  #scroll {
+    font-size: 13px;
+  }
 }

@@ -21,3 +21,14 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 960px) {
+  .news_page {
+    padding: 3rem;
+  }
+
+  .news_head {
+    text-align: center;
+    font-size: x-large;
+  }
+}

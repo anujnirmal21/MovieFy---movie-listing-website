@@ -42,7 +42,9 @@ export default function Footer() {
             <span></span>
           </div>
           <div className="moviefyfoot"> a moviefy company</div>
-          <div className="rights">© 1990-2023 by MovieFy.com, Inc.</div>
+          <div className="rights">
+            © 2023 by MovieFy.com || Anuj Nirmal, Inc.
+          </div>
         </div>
       </div>
     </>

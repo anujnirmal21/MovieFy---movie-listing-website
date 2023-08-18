@@ -48,11 +48,10 @@ export default function Wishlist() {
   }, [removeWish]);
   return (
     <>
+      <h2 className="titleW">
+        <span id="headtext">Your wishlist</span>
+      </h2>
       <div className="wishlist">
-        <h2 className="titleW">
-          <span id="headtext">Your wishlist</span>
-        </h2>
-
         {wishlist.length > 0 && addwishlist !== undefined ? (
           wishlist.map((items) => {
             return <Card movie={items} key={items.id} id={true}></Card>;
@@ -61,7 +60,7 @@ export default function Wishlist() {
           <div className="cards" onClick={scrollUp}>
             <button id="scroll">
               <i className="fa fa-plus fa-1x" aria-hidden="true">
-                <span>Add</span>
+                <span id="scroll">Add</span>
               </i>
             </button>
           </div>

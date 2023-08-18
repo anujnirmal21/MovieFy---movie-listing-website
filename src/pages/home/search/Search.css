@@ -75,3 +75,26 @@ input[type="text"] {
 #visible {
   display: block;
 }
+
+@media (max-width: 960px) {
+  #visible {
+    display: none;
+  }
+  .search_bar {
+    display: flex;
+    height: 35px;
+    min-width: 170px;
+    width: 18vw;
+    border-radius: 20px;
+  }
+  input[type="text"] {
+    height: 100%;
+    width: 80%;
+    margin-right: 15.62px;
+    background: rgb(32, 32, 32);
+    border: transparent;
+    font-size: small;
+    color: rgb(200, 198, 198);
+    outline: none;
+  }
+}

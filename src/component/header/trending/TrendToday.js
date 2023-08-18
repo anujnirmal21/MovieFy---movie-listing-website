@@ -37,7 +37,7 @@ export default function TrendToday() {
               const fourthCard = arr[i + 3];
               inc();
               return (
-                <div key={data.id}>
+                <div className="trend_card" key={data.id}>
                   {firstCard && <Card movie={firstCard}></Card>}
                   {secondCard && <Card movie={secondCard}></Card>}
                   {thirdCard && <Card movie={thirdCard}></Card>}
@@ -45,7 +45,7 @@ export default function TrendToday() {
                 </div>
               );
             } else {
-              return <span key={data.id}></span>;
+              return <span key={data.id}>hello</span>;
             }
           })}
         </Carousel>

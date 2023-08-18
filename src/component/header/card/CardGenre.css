@@ -17,6 +17,7 @@
   padding-bottom: 40px;
   position: relative;
 }
+
 .title {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: x-large;
@@ -50,4 +51,26 @@
   height: 200px;
   z-index: 0;
   border: 1px solid rgb(99, 99, 99);
+}
+
+@media (max-width: 960px) {
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: start;
+  }
+
+  .imgItem {
+    height: 30rem;
+    width: 90%;
+    border-radius: 4px;
+    margin-left: 4vw;
+  }
+
+  .title {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: medium;
+    padding-bottom: 20px;
+  }
 }

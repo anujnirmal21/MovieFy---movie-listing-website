@@ -1,6 +1,7 @@
 .header {
   display: flex;
   height: 100px;
+  width: 80vw;
   align-items: center;
   background: rgb(18, 18, 18);
   justify-content: space-between;
@@ -68,8 +69,65 @@ span {
   display: none;
 }
 
+.fa-bars {
+  color: white;
+}
+.toggler {
+  background-color: transparent;
+  border: transparent;
+  display: none;
+}
+
+.dropdown {
+  box-sizing: border-box;
+  position: relative;
+}
+.item_block {
+  background: rgb(18, 18, 18);
+  position: absolute;
+  top: 6vh;
+  right: -7vw;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-left: 51vw;
+  padding-right: 40vw;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  text-align: center;
+  animation: dropdown 0.5s ease forwards;
+  /* Additional styles */
+}
+
+@keyframes dropdown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.item {
+  list-style: none;
+}
 /* responsive layout */
-@media (max-width: 1060px) {
+@media (max-width: 960px) {
+  .header {
+    display: flex;
+    height: 100px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .header-left {
+    width: 50%;
+    justify-content: space-between;
+  }
+  .header-right {
+    margin-right: 4vw;
+  }
   .Menu_bar {
     display: block;
     height: 100%;
@@ -83,5 +141,8 @@ span {
   }
   #page {
     display: none;
+  }
+  .toggler {
+    display: block;
   }
 }

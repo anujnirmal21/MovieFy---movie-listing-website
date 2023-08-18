@@ -24,20 +24,22 @@ export default function Browse() {
 
   return (
     <>
-      {data.items ? (
-        <>
-          <h1 style={{ paddingTop: 10 }}>News on trending</h1>
-          {data.items
-            ? data.items.map((item) => {
-                return <CardGenre data={item} key={item.id}></CardGenre>;
-              })
-            : false}
-        </>
-      ) : (
-        <div className="before">
-          <i class="fa fa-spinner fa-4x" aria-hidden="true"></i>
-        </div>
-      )}
+      <div className="news_page">
+        {data.items ? (
+          <>
+            <h1 className="news_head">News on trending</h1>
+            {data.items
+              ? data.items.map((item) => {
+                  return <CardGenre data={item} key={item.id}></CardGenre>;
+                })
+              : false}
+          </>
+        ) : (
+          <div className="before">
+            <i class="fa fa-spinner fa-4x" aria-hidden="true"></i>
+          </div>
+        )}
+      </div>
     </>
   );
 }
