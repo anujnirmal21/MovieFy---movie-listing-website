@@ -28,7 +28,12 @@ export default function TrendToday() {
     <>
       <h2 id="headtext">Featured Today</h2>
       <div className="featured">
-        <Carousel showIndicators={false} showStatus={false} showThumbs={true}>
+        <Carousel
+          showIndicators={false}
+          showStatus={false}
+          showThumbs={true}
+          swipeable={false}
+        >
           {data.map((data, idx, arr) => {
             if (idx < arr.length - 4) {
               const firstCard = arr[i + 0];
