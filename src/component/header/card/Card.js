@@ -10,6 +10,8 @@ export default function Card({ movie, type, id }) {
   const { addtoWish, removeFromWish } = useContext(WishCtx);
   const [Wish, setWish] = useState(id);
   function handleClick(e) {
+    console.log("hello");
+    e.stopPropagation();
     e.preventDefault();
     if (Wish) {
       removeFromWish(movie);

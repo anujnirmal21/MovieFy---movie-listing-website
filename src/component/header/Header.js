@@ -61,7 +61,7 @@ export default function Header({ inputValue }) {
       <div className="header-right">
         <div className="dropdown">
           <button className="toggler" onClick={handleToggle}>
-            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+            <i className="fa fa-bars fa-2x" aria-hidden="true"></i>
           </button>
           {/* menu state */}
 

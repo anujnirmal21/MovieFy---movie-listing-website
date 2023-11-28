@@ -150,3 +150,50 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Media query for screens with a maximum width of 768px */
+@media (max-width: 768px) {
+  .movie {
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+  }
+
+  .movie__backdrop {
+    object-position: center top;
+  }
+
+  .movie__detail {
+    width: 100%;
+    bottom: 0;
+    flex-wrap: wrap;
+  }
+
+  .movie__poster {
+    display: none;
+  }
+
+  .movie__detailRight {
+    height: auto;
+    align-items: center;
+  }
+
+  .movie__detailRightTop > div {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .synopsisText {
+    font-size: 1.2rem;
+  }
+
+  .movie__links {
+    bottom: 0;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

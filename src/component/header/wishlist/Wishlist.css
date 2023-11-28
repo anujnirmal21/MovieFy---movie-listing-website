@@ -10,6 +10,7 @@
 
 #scroll:hover {
   color: red;
+  cursor: pointer;
 }
 #scroll {
   background-color: transparent;

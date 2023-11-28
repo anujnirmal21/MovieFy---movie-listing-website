@@ -8,7 +8,7 @@ export default function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
   const [addwishlist, setAddWishlist] = useState(addWish ? addWish : "");
   const movieSection = document.querySelector(".movie_list");
-  console.log(addWish);
+
   function scrollUp(e) {
     e.stopPropagation();
     movieSection.scrollIntoView({ behavior: "smooth" });

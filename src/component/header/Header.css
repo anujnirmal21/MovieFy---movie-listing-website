@@ -49,6 +49,7 @@ span {
   font-weight: 500;
   font-size: medium;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .auth:hover {
