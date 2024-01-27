@@ -10,7 +10,7 @@
 .header-left {
   display: flex;
   align-items: center;
-  column-gap: 4%;
+  column-gap: 12%;
   margin-left: 1vw;
 }
 .header-right {

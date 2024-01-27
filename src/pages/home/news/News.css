@@ -1,5 +1,5 @@
 .before {
-  height: 46.5vh;
+  height: 80vh;
   font-size: xx-small;
   font-family: Arial, Helvetica, sans-serif;
   font-style: italic;
@@ -13,6 +13,11 @@
   animation: spin 2s linear infinite;
 }
 
+.red {
+  color: rgb(187, 16, 16);
+  font-size: 1.3em;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);

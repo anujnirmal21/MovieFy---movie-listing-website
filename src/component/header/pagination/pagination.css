@@ -1,0 +1,29 @@
+.page-box {
+  margin: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.page-mark {
+  width: 25px;
+  height: 25px;
+  border: 1px solid red;
+  border-radius: 4px;
+  font-family: sans-serif;
+  font-size: large;
+  background-color: red;
+  color: white;
+}
+
+.page-mark:hover {
+  border: 2px solid white;
+}
+
+.marked {
+  border: 2px solid white;
+  width: 35px;
+  height: 35px;
+}

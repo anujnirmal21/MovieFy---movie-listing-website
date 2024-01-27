@@ -8,6 +8,8 @@ import Sticky from "react-stickynode";
 import Search from "./pages/home/search/Search";
 import News from "./pages/home/news/News";
 import Footer from "./component/header/footer/Footer";
+import Error from "./pages/home/Error/Error";
+import Browse from "./pages/home/browse/Browse";
 
 export default function App() {
   const [init, setInit] = useState();
@@ -36,7 +38,8 @@ export default function App() {
             ></Route>
             <Route path="/news" element={<News></News>}></Route>
             <Route path="/movies/:type" element={<Home></Home>}></Route>
-            <Route path="*" element={<h1>Error 404</h1>}></Route>
+            <Route path="/browse" element={<Browse></Browse>}></Route>
+            <Route path="*" element={<Error></Error>}></Route>
           </Routes>
         </Router>
       </div>

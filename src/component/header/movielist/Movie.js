@@ -3,6 +3,7 @@ import Card from "../card/Card";
 import "./Movie.css";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Movie() {
   const [movieList, setMovieList] = useState([]);
@@ -10,15 +11,17 @@ export default function Movie() {
   const classValue = type ? type : "popular";
 
   const getData = useCallback(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${
-        type ? type : "popular"
-      }?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
-    )
-      .then((res) => res.json())
-      .then((data) => setMovieList(data.results))
-      .catch((err) => {
-        console.log(err);
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${
+          type ? type : "popular"
+        }?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
+      )
+      .then((response) => {
+        setMovieList(response.data.results);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }, [type]);
 

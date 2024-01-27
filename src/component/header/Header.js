@@ -51,7 +51,7 @@ export default function Header({ inputValue }) {
         <Link to="/" style={{ textDecoration: "none" }}>
           <span id="page">Discover</span>
         </Link>
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/browse" style={{ textDecoration: "none" }}>
           <span id="page">Browse</span>
         </Link>
         <Link to="/news" style={{ textDecoration: "none" }}>
@@ -102,7 +102,7 @@ export default function Header({ inputValue }) {
                 </Link>
               </li>
               <li className="item">
-                <Link to="/" style={{ textDecoration: "none" }}>
+                <Link to="/browse" style={{ textDecoration: "none" }}>
                   <span>Browse</span>
                 </Link>
               </li>

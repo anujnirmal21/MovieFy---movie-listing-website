@@ -16,14 +16,21 @@ export default function Search({ input }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          "https://api.themoviedb.org/3/discover/movie?api_key=2c85d687d912de1229c6aaf23b41b705&language=en-US"
-        );
-        setData(res.data.results);
-      } catch (err) {
-        console.log(err);
+        let newData = [];
+        for (let i = 0; i < 10; i++) {
+          const response = await axios.get(
+            `https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US&page=${
+              i + 1
+            }`
+          );
+          newData = [...newData, ...response.data.results];
+        }
+        setData(newData);
+      } catch (error) {
+        console.error(error);
       }
     };
+
     fetchData();
   }, []);
 
