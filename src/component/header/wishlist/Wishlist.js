@@ -26,10 +26,6 @@ export default function Wishlist() {
   useEffect(() => {
     if (addwishlist && addwishlist !== undefined) {
       setWishlist((prevWishlist) => [...prevWishlist, addwishlist]);
-      localStorage.setItem(
-        "wishlist",
-        JSON.stringify([...wishlist, addwishlist])
-      );
     }
   }, [addwishlist]);
 
@@ -38,14 +34,23 @@ export default function Wishlist() {
       setWishlist((prevWishlist) =>
         prevWishlist.filter((item) => item.id !== removeWish.id)
       );
-      localStorage.setItem(
-        "wishlist",
-        JSON.stringify(
-          [...wishlist].filter((item) => item.id !== removeWish.id)
-        )
-      );
     }
   }, [removeWish]);
+
+  if (removeWish) {
+    localStorage.setItem(
+      "wishlist",
+      JSON.stringify([...wishlist].filter((item) => item.id !== removeWish.id))
+    );
+  }
+
+  if (addWish) {
+    localStorage.setItem(
+      "wishlist",
+      JSON.stringify([...wishlist, addwishlist])
+    );
+  }
+
   return (
     <>
       <h2 className="titleW">
