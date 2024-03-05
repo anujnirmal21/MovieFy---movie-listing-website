@@ -40,6 +40,13 @@ export default function Card({ movie, type, id }) {
           style={{ textDecoration: "none", color: "white" }}
         >
           <div className="cards">
+            <button onClick={handleClick} id="wishbtn-sm">
+              <i
+                className="fa fa-heart fa-3x"
+                id={id || Wish ? "wished" : "wished-rmv"}
+                aria-hidden="true"
+              ></i>
+            </button>
             <img
               className="cards_img"
               alt="poster"

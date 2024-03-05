@@ -115,19 +115,20 @@ span {
   list-style: none;
 }
 /* responsive layout */
-@media (max-width: 960px) {
+@media (max-width: 1060px) {
   .header {
     display: flex;
+    flex-direction: row;
     height: 100px;
     width: 100%;
     justify-content: space-between;
   }
   .header-left {
-    width: 50%;
-    justify-content: space-between;
+    width: 80%;
+    gap: 30px;
   }
   .header-right {
-    margin-right: 4vw;
+    margin-right: 8vw;
   }
   .Menu_bar {
     display: block;
@@ -145,5 +146,11 @@ span {
   }
   .toggler {
     display: block;
+  }
+}
+
+@media (max-width: 520px) {
+  .header-left {
+    gap: 50px;
   }
 }

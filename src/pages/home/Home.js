@@ -36,7 +36,7 @@ export default function Home() {
       {popularMovies && loaded ? (
         <div className="poster">
           <Carousel
-            showThumbs={true}
+            showThumbs={false}
             autoPlay={true}
             transitionTime={800}
             infiniteLoop={true}
@@ -52,6 +52,7 @@ export default function Home() {
                 >
                   <div className="poster_image">
                     <img
+                      className="img"
                       src={`https://image.tmdb.org/t/p/original${
                         movie && movie.backdrop_path
                       }`}

@@ -2,14 +2,12 @@
   background-color: #211f1fb3;
   color: rgb(245, 245, 245);
   font-family: sans-serif;
-  height: 40vh;
-}
-.sec {
-  height: inherit;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 2vh;
+  height: 40vh;
 }
 
 .auth1 {

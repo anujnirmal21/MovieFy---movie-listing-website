@@ -11,7 +11,7 @@ export default function Pagination({
     pages.push(i);
   }
 
-  console.log(totalitems + " " + itemPerPage);
+  // console.log(totalitems + " " + itemPerPage);
   const [CurrentView, setCurrentView] = useState();
 
   function handleChange(item) {

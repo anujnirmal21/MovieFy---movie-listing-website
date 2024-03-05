@@ -11,7 +11,6 @@ export default function Browse() {
   const [dropdownToggle, setDropDownToggle] = useState(false);
   const [genereFilter, setGenereFilter] = useState([]);
   const [dateFilter, setDateFilter] = useState([]);
-  const [uncheck, setUncheck] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,17 +38,16 @@ export default function Browse() {
 
   const handleClick = () => {
     setDropDownToggle(!dropdownToggle);
-    setData(originalData);
   };
 
   const handleApply = () => {
-    setDropDownToggle(!dropdownToggle);
+    setDropDownToggle(false); // Close dropdown when apply button is clicked
 
     let newData = [...originalData];
 
     // Filter by genre
     if (genereFilter.length > 0) {
-      newData = data.filter((item) =>
+      newData = newData.filter((item) =>
         genereFilter.some((genreId) =>
           item.genre_ids.includes(parseInt(genreId))
         )
@@ -58,42 +56,42 @@ export default function Browse() {
 
     // Filter by release date
     if (dateFilter.length > 0) {
-      newData = newData.filter((item) =>
-        dateFilter.includes(item.release_date.toString().slice(0, 4))
-      );
+      const dateFilterSet = new Set(dateFilter.map((year) => year.toString())); // Convert dateFilter to Set for O(1) lookup
+
+      let filteredData = [];
+      for (let i = 0; i < newData.length; i++) {
+        const releaseYear = newData[i].release_date.toString().slice(0, 4);
+
+        if (dateFilterSet.has(releaseYear)) {
+          // Check if releaseYear exists in dateFilterSet
+          filteredData.push(newData[i]);
+        }
+      }
+      newData = filteredData;
     }
 
     setData(newData);
-    setGenereFilter([]);
-    setDateFilter([]);
-    setUncheck(true);
   };
 
-  const handleChange = (e) => {
-    const genreId = e.target.value;
-    setGenereFilter((genereFilter) => {
-      if (genereFilter.includes(genreId)) {
-        return genereFilter.filter((id) => id !== genreId);
+  const handleChange = (genreId) => {
+    setGenereFilter((prevFilter) => {
+      if (prevFilter.includes(genreId)) {
+        return prevFilter.filter((id) => id !== genreId);
       } else {
-        return [...genereFilter, genreId];
+        return [...prevFilter, genreId];
       }
     });
   };
 
-  const filterDate = (e) => {
-    const year = e.target.value;
-    setDateFilter((dateFilter) => {
-      if (dateFilter.includes(year)) {
-        return dateFilter.filter((y) => y !== year);
+  const filterDate = (year) => {
+    setDateFilter((prevFilter) => {
+      if (prevFilter.includes(year)) {
+        return prevFilter.filter((y) => y !== year);
       } else {
-        return [...dateFilter, year];
+        return [...prevFilter, year];
       }
     });
   };
-
-  // if (data.length > 1) {
-  //   console.log(data);
-  // }
 
   return (
     <div>
@@ -154,7 +152,6 @@ export default function Browse() {
                         id={item.id}
                         name={item.name}
                         handleChange={handleChange}
-                        uncheck={uncheck}
                       ></CheckBoxe>
                     ))}
                   </ul>
@@ -180,9 +177,8 @@ export default function Browse() {
                         key={item}
                         id={item}
                         name={item}
-                        handleChange={filterDate}
-                        uncheck={uncheck}
-                      ></CheckBoxe>
+                        handleChange={() => filterDate(item)}
+                      />
                     ))}
                   </ul>
                 </div>
@@ -198,7 +194,7 @@ export default function Browse() {
               Apply
             </button>
           </div>
-          <div>
+          <div className=" flex justify-evenly flex-wrap">
             {data.map((movie) => (
               <Card movie={movie} key={Math.random()}></Card>
             ))}
