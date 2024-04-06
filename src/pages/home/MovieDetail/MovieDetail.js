@@ -1,12 +1,29 @@
 import React, { useEffect, useState } from "react";
 import "./MovieDetail.css";
+import getMovieTrailer from "../../../utils/getMovieTrailer";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import YoutubePlayer from "../../../component/header/trailer/YoutubePlayer.js";
 
 const MovieDetail = () => {
-  const [currentMovieDetail, setMovie] = useState();
+  const [currentMovieDetail, setMovie] = useState([]);
+  const [trailer, setTrailer] = useState("");
   const [loaded, setLoaded] = useState(false);
   const { id } = useParams();
+
+  // Function to get trailer link of a movie
+
+  getMovieTrailer(id)
+    .then((trailerLink) => {
+      if (trailerLink) {
+        setTrailer(trailerLink);
+      } else {
+        console.log("No trailer found for the movie.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error getting movie trailer:", error);
+    });
 
   useEffect(() => {
     const getData = () => {
@@ -30,146 +47,160 @@ const MovieDetail = () => {
     }, 300);
   }, [id]);
 
+  // if (currentMovieDetail !== []) {
+  //   console.log(currentMovieDetail);
+  // }
+
+  if (!loaded) {
+    return (
+      <div className=" flex justify-center h-[90vh] items-center">
+        <div className="w-16 h-16 border-8 border-dashed rounded-full animate-spin border-blue-600"></div>
+      </div>
+    );
+  }
+
   return (
     <div>
-      {loaded ? (
-        <>
-          <div className="movie">
-            <div className="movie__intro">
-              <img
-                className="movie__backdrop"
-                src={`https://image.tmdb.org/t/p/original${
-                  currentMovieDetail ? currentMovieDetail.backdrop_path : ""
-                }`}
-                alt="img"
-              />
-            </div>
-            <div className="movie__detail">
-              <div className="movie__detailLeft">
-                <div className="movie__posterBox">
-                  <img
-                    className="movie__poster"
-                    src={`https://image.tmdb.org/t/p/original${
-                      currentMovieDetail ? currentMovieDetail.poster_path : ""
-                    }`}
-                    alt="img"
-                  />
-                </div>
-              </div>
-              <div className="movie__detailRight">
-                <div className="movie__detailRightTop">
-                  <div className="movie__name">
-                    {currentMovieDetail
-                      ? currentMovieDetail.original_title
-                      : ""}
-                  </div>
-                  <div className="movie__tagline">
-                    {currentMovieDetail ? currentMovieDetail.tagline : ""}
-                  </div>
-                  <div className="movie__rating">
-                    {currentMovieDetail ? currentMovieDetail.vote_average : ""}{" "}
-                    <i className="fas fa-star" />
-                    <span className="movie__voteCount">
-                      {currentMovieDetail
-                        ? "(" + currentMovieDetail.vote_count + ") votes"
-                        : ""}
-                    </span>
-                  </div>
-                  <div className="movie__runtime">
-                    {currentMovieDetail
-                      ? currentMovieDetail.runtime + " mins"
-                      : ""}
-                  </div>
-                  <div className="movie__releaseDate">
-                    {currentMovieDetail
-                      ? "Release date: " + currentMovieDetail.release_date
-                      : ""}
-                  </div>
-                  <div className="movie__genres">
-                    {currentMovieDetail && currentMovieDetail.genres
-                      ? currentMovieDetail.genres.map((genre) => (
-                          <>
-                            <span
-                              className="movie__genre"
-                              id={genre.id}
-                              key={genre.id}
-                            >
-                              {genre.name}
-                            </span>
-                          </>
-                        ))
-                      : ""}
-                  </div>
-                </div>
-                <div className="movie__detailRightBottom">
-                  <div className="synopsisText">Synopsis</div>
-                  <div>
-                    {currentMovieDetail ? currentMovieDetail.overview : ""}
-                  </div>
-                </div>
+      <>
+        <div className="movie">
+          <div className=" mt-4 mb-10">
+            <YoutubePlayer videoUrl={trailer} />
+          </div>
+          <h1 className=" text-[3rem] m-8 p-10 font-bold">Movie Overview</h1>
+          <div className="movie__intro">
+            <img
+              className="movie__backdrop"
+              src={
+                currentMovieDetail && currentMovieDetail.backdrop_path
+                  ? `https://image.tmdb.org/t/p/original${currentMovieDetail.backdrop_path}`
+                  : "https://cdn.dribbble.com/userupload/8749861/file/original-fa2a616798cf8402c11a8daecb2206f7.png?resize=400x300&vertical=center"
+              }
+              alt="img"
+            />
+          </div>
+          <div className="movie__detail">
+            <div className="movie__detailLeft">
+              <div className="movie__posterBox">
+                <img
+                  className="movie__poster"
+                  src={`https://image.tmdb.org/t/p/original${
+                    currentMovieDetail ? currentMovieDetail.poster_path : ""
+                  }`}
+                  alt="img"
+                />
               </div>
             </div>
-            <div className="movie__links">
-              <div className="movie__heading">Useful Links</div>
-              {currentMovieDetail && currentMovieDetail.homepage && (
-                <a
-                  href={currentMovieDetail.homepage}
-                  target="blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <p>
-                    <span className="movie__homeButton movie__Button">
-                      Homepage{" "}
-                      <i className="newTab fas fa-external-link-alt"></i>
-                    </span>
-                  </p>
-                </a>
-              )}
-              {currentMovieDetail && currentMovieDetail.imdb_id && (
-                <a
-                  href={
-                    "https://www.imdb.com/title/" + currentMovieDetail.imdb_id
-                  }
-                  target="blank"
-                  style={{ textDecoration: "none" }}
-                >
-                  <p>
-                    <span className="movie__imdbButton movie__Button">
-                      IMDb<i className="newTab fas fa-external-link-alt"></i>
-                    </span>
-                  </p>
-                </a>
-              )}
-            </div>
-            <div className="movie__heading">Production companies</div>
-            <div className="movie__production">
-              {currentMovieDetail &&
-                currentMovieDetail.production_companies &&
-                currentMovieDetail.production_companies.map((company) => (
-                  <>
-                    {company.logo_path && (
-                      <span className="productionCompanyImage">
-                        <img
-                          className="movie__productionComapany"
-                          src={
-                            "https://image.tmdb.org/t/p/original" +
-                            company.logo_path
-                          }
-                          alt="img"
-                        />
-                        <span>{company.name}</span>
-                      </span>
-                    )}
-                  </>
-                ))}
+            <div className="movie__detailRight">
+              <div className="movie__detailRightTop">
+                <div className="movie__name">
+                  {currentMovieDetail ? currentMovieDetail.original_title : ""}
+                </div>
+                <div className="movie__tagline">
+                  {currentMovieDetail ? currentMovieDetail.tagline : ""}
+                </div>
+                <div className="movie__rating">
+                  {currentMovieDetail ? currentMovieDetail.vote_average : ""}{" "}
+                  <i className="fas fa-star" />
+                  <span className="movie__voteCount">
+                    {currentMovieDetail
+                      ? "(" + currentMovieDetail.vote_count + ") votes"
+                      : ""}
+                  </span>
+                </div>
+                <div className="movie__runtime">
+                  {currentMovieDetail
+                    ? currentMovieDetail.runtime + " mins"
+                    : ""}
+                </div>
+                <div className="movie__releaseDate">
+                  {currentMovieDetail
+                    ? "Release date: " + currentMovieDetail.release_date
+                    : ""}
+                </div>
+                <div className="movie__genres">
+                  {currentMovieDetail && currentMovieDetail.genres
+                    ? currentMovieDetail.genres.map((genre) => (
+                        <>
+                          <span
+                            className="movie__genre"
+                            id={genre.id}
+                            key={genre.id}
+                          >
+                            {genre.name}
+                          </span>
+                        </>
+                      ))
+                    : ""}
+                </div>
+              </div>
+              <div className="movie__detailRightBottom">
+                <div className="synopsisText">Synopsis</div>
+                <div className=" lg:text-lg text-[2rem]">
+                  {currentMovieDetail ? currentMovieDetail.overview : ""}
+                </div>
+              </div>
             </div>
           </div>
-        </>
-      ) : (
-        <div className=" flex justify-center h-[90vh] items-center">
-          <div className="w-16 h-16 border-8 border-dashed rounded-full animate-spin border-blue-600"></div>
+
+          <div className="movie__links">
+            <div className="movie__heading">Useful Links</div>
+            {currentMovieDetail && currentMovieDetail.homepage && (
+              <a
+                href={currentMovieDetail.homepage}
+                target="blank"
+                style={{ textDecoration: "none" }}
+              >
+                <p>
+                  <span className="movie__homeButton movie__Button">
+                    Homepage <i className="newTab fas fa-external-link-alt"></i>
+                  </span>
+                </p>
+              </a>
+            )}
+            {currentMovieDetail && currentMovieDetail.imdb_id && (
+              <a
+                href={
+                  "https://www.imdb.com/title/" + currentMovieDetail.imdb_id
+                }
+                target="blank"
+                style={{ textDecoration: "none" }}
+              >
+                <p>
+                  <span className="movie__imdbButton movie__Button">
+                    IMDb<i className="newTab fas fa-external-link-alt"></i>
+                  </span>
+                </p>
+              </a>
+            )}
+          </div>
+
+          <div className="movie__heading">Production companies</div>
+          <div className="movie__production">
+            {currentMovieDetail &&
+              currentMovieDetail.production_companies &&
+              currentMovieDetail.production_companies.map((company) => (
+                <>
+                  {company.logo_path && (
+                    <span
+                      className="productionCompanyImage"
+                      key={company.logo_path}
+                    >
+                      <img
+                        className="movie__productionComapany"
+                        src={
+                          "https://image.tmdb.org/t/p/original" +
+                          company.logo_path
+                        }
+                        alt="img"
+                      />
+                      <span>{company.name}</span>
+                    </span>
+                  )}
+                </>
+              ))}
+          </div>
         </div>
-      )}
+      </>
     </div>
   );
 };

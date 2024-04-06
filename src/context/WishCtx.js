@@ -13,7 +13,7 @@ const WishProvider = ({ children }) => {
       setWishlist((prevWishlist) => [...prevWishlist, movie]);
       localStorage.setItem("wishlist", JSON.stringify([...wishlist, movie]));
     }
-    console.log(wishlist);
+
     setAddWish(movie);
     setRemoveWish("");
     setTimeout(() => {

@@ -3,17 +3,17 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .movie__intro {
-  width: 80%;
+  width: 100%;
 }
 
 .movie__backdrop {
   width: 100%;
   height: inherit;
-  object-fit: cover;
+  object-fit: contain;
   object-position: 0 35%;
   border-radius: 4px;
 }
@@ -24,6 +24,7 @@
   display: flex;
   position: relative;
   bottom: 225px;
+  padding: 0vw 4vw;
 }
 
 .movie__detailLeft {
@@ -31,7 +32,7 @@
 }
 
 .movie__poster {
-  width: 300px;
+  width: 900px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.86) 0px 22px 40px 6px;
 }
@@ -179,14 +180,16 @@
   }
 
   .movie__detailRightTop > div {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     text-align: center;
     gap: 20px;
   }
-
+  .movie__detailRightTop {
+    margin: 5vh;
+  }
   .synopsisText {
-    font-size: 1.2rem;
+    font-size: 3rem;
   }
 
   .movie__links {
@@ -195,5 +198,10 @@
     align-items: center;
     width: 100%;
     margin-bottom: 1rem;
+  }
+
+  .movie__detailRightBottom {
+    margin: 2rem;
+    flex: 0.8;
   }
 }

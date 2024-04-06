@@ -6,34 +6,40 @@ import { Link } from "react-router-dom";
 import Movie from "../../component/header/movielist/Movie";
 import TrendToday from "../../component/header/trending/TrendToday";
 import Wishlist from "../../component/header/wishlist/Wishlist";
+import Error from "../home/Error/Error.js";
 import axios from "axios";
 
 export default function Home() {
   const [popularMovies, setPopularMovies] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(null); // New state to handle errors
 
   useEffect(() => {
-    try {
-      const apicall = async () => {
+    const fetchMovies = async () => {
+      try {
         const response = await axios.get(
           "https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US"
         );
         setPopularMovies(response.data.results);
-      };
+        setLoaded(true);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setError(error); // Set the error state if request fails
+        setLoaded(true);
+      }
+    };
 
-      apicall();
-    } catch (error) {
-      console.log(error);
-    }
-
-    setTimeout(() => {
-      setLoaded(true);
-    }, 1000);
+    fetchMovies();
   }, []);
+
+  if (error) {
+    // Render error message or redirect to a network error page
+    return <Error />;
+  }
 
   return (
     <>
-      {popularMovies && loaded ? (
+      {popularMovies.length > 0 && loaded ? (
         <div className="poster">
           <Carousel
             showThumbs={false}

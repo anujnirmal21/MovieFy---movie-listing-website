@@ -6,8 +6,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 2vh;
-  height: 40vh;
+  gap: 3vh;
+  height: fit-content;
+  padding: 5rem;
 }
 
 .auth1 {

@@ -37,20 +37,6 @@ export default function Wishlist() {
     }
   }, [removeWish]);
 
-  if (removeWish) {
-    localStorage.setItem(
-      "wishlist",
-      JSON.stringify([...wishlist].filter((item) => item.id !== removeWish.id))
-    );
-  }
-
-  if (addWish) {
-    localStorage.setItem(
-      "wishlist",
-      JSON.stringify([...wishlist, addwishlist])
-    );
-  }
-
   return (
     <>
       <h2 className="titleW">

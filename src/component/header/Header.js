@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import logo from "../../img/logo.webp";
 
 export default function Header({ inputValue }) {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
@@ -21,7 +22,7 @@ export default function Header({ inputValue }) {
           <div className="logo">
             <img
               className="header_icon"
-              src="https://play-lh.googleusercontent.com/fQ_PzyjsdPayvqSxXpkk_Hoiz6nBGXA1i_z34vagQIqu8goxbWm6XU8OXWNtErhhD8g=w240-h480-rw"
+              src={logo}
               alt="MovieFy"
               width="40"
               height="40"

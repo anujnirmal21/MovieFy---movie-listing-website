@@ -50,9 +50,11 @@ export default function Card({ movie, type, id }) {
             <img
               className="cards_img"
               alt="poster"
-              src={`https://image.tmdb.org/t/p/original${
-                movie ? movie.poster_path : ""
-              }`}
+              src={
+                movie && movie.poster_path
+                  ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                  : "https://cdn.dribbble.com/userupload/8749861/file/original-fa2a616798cf8402c11a8daecb2206f7.png?resize=400x300&vertical=center"
+              }
             />
             <div className="card_overlay">
               <span className="wishItem">
