@@ -22,7 +22,7 @@ export default function Browse() {
           );
           newData = [...newData, ...response.data.results];
         }
-        setData(newData);
+        setData(removeDuplicates(newData));
         setOriginalData(newData);
       } catch (error) {
         console.error(error);
@@ -58,19 +58,13 @@ export default function Browse() {
     if (dateFilter.length > 0) {
       const dateFilterSet = new Set(dateFilter.map((year) => year.toString())); // Convert dateFilter to Set for O(1) lookup
 
-      let filteredData = [];
-      for (let i = 0; i < newData.length; i++) {
-        const releaseYear = newData[i].release_date.toString().slice(0, 4);
-
-        if (dateFilterSet.has(releaseYear)) {
-          // Check if releaseYear exists in dateFilterSet
-          filteredData.push(newData[i]);
-        }
-      }
-      newData = filteredData;
+      newData = newData.filter((item) => {
+        const releaseYear = item.release_date.toString().slice(0, 4);
+        return dateFilterSet.has(releaseYear);
+      });
     }
 
-    setData(newData);
+    setData(removeDuplicates(newData));
   };
 
   const handleChange = (genreId) => {
@@ -90,6 +84,18 @@ export default function Browse() {
       } else {
         return [...prevFilter, year];
       }
+    });
+  };
+
+  // Helper function to remove duplicates
+  const removeDuplicates = (array) => {
+    const uniqueIds = new Set();
+    return array.filter((item) => {
+      if (!uniqueIds.has(item.id)) {
+        uniqueIds.add(item.id);
+        return true;
+      }
+      return false;
     });
   };
 

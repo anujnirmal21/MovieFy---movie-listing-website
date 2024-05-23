@@ -5,26 +5,30 @@ import Card from "../../../component/header/card/Card";
 import { Link } from "react-router-dom";
 
 export default function Search({ input }) {
-  const [searchitem, setSearchitem] = useState("");
+  const [searchItem, setSearchItem] = useState("");
   const [data, setData] = useState([]);
-  const [filteredData, setFilterData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [searchFilter, setSearchFilter] = useState([]);
+
   useEffect(() => {
-    setSearchitem(input + "");
+    setSearchItem(input);
   }, [input]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let newData = [];
-        for (let i = 0; i < 10; i++) {
-          const response = await axios.get(
-            `https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US&page=${
-              i + 1
-            }`
+        const requests = [];
+        for (let i = 0; i < 20; i++) {
+          requests.push(
+            axios.get(
+              `https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US&page=${
+                i + 1
+              }`
+            )
           );
-          newData = [...newData, ...response.data.results];
         }
+        const responses = await Promise.all(requests);
+        const newData = responses.flatMap((response) => response.data.results);
         setData(newData);
       } catch (error) {
         console.error(error);
@@ -35,68 +39,69 @@ export default function Search({ input }) {
   }, []);
 
   useEffect(() => {
-    if (searchitem !== "" || searchitem !== undefined) {
-      const filterItem = data.filter((search) => {
-        return search.title.toLowerCase().includes(searchitem.toLowerCase());
-      });
-      setFilterData(filterItem);
-    } else {
-      setFilterData("");
-    }
-  }, [searchitem, data]);
+    if (searchItem) {
+      const filtered = data.filter((movie) =>
+        movie.title.toLowerCase().startsWith(searchItem.toLowerCase())
+      );
+      const uniqueFiltered = Array.from(
+        new Set(filtered.map((movie) => movie.id))
+      ).map((id) => filtered.find((movie) => movie.id === id));
+      setFilteredData(uniqueFiltered);
 
-  useEffect(() => {
-    if (searchitem !== "" || searchitem !== undefined) {
-      const filterItem = data.filter((search) => {
-        return search.title.toLowerCase().startsWith(searchitem.toLowerCase());
-      });
+      const searchFiltered = data.filter((movie) =>
+        movie.title.toLowerCase().startsWith(searchItem.toLowerCase())
+      );
+      const uniqueSearchFiltered = Array.from(
+        new Set(searchFiltered.map((movie) => movie.id))
+      ).map((id) => searchFiltered.find((movie) => movie.id === id));
       setSearchFilter(
-        filterItem.length > 0 ? filterItem : [{ result: "No results" }]
+        uniqueSearchFiltered.length > 0
+          ? uniqueSearchFiltered
+          : [{ id: 0, result: "No results" }]
       );
     } else {
-      setFilterData("");
+      setFilteredData([]);
+      setSearchFilter([]);
     }
-  }, [searchitem, data]);
+  }, [searchItem, data]);
 
   return (
     <>
       <div className="suggestion" id={input ? "visible" : ""}>
-        {searchFilter.map((item) => {
-          return (
-            <div
-              id={input && item ? "visible" : ""}
-              className="blockSearch"
-              key={item.id}
-            >
-              <span id="page">
+        {searchFilter.map((item) => (
+          <div
+            id={input && item ? "visible" : ""}
+            className="blockSearch"
+            key={item.id}
+          >
+            <span id="page">
+              {item.result ? (
+                item.result
+              ) : (
                 <Link
                   to={`/movie/${item.id}`}
                   style={{ textDecoration: "none", color: "white" }}
                 >
-                  {item.original_title ? item.original_title : item.result}
+                  {item.original_title}
                 </Link>
-              </span>
-            </div>
-          );
-        })}
+              )}
+            </span>
+          </div>
+        ))}
       </div>
-      {searchitem === "" ? (
+      {searchItem === "" ? (
         <div className="searchpage">moviefy search page</div>
       ) : (
         ""
       )}
-      {searchitem !== "" ? (
+      {searchItem !== "" ? (
         <div className="searchSection">
-          <h2 className="searchWord">
-            {searchitem === "" ? "" : `Movies results for  "${searchitem}"`}
-          </h2>
+          <h2 className="searchWord">{`Movies results for "${searchItem}"`}</h2>
           {filteredData.length > 0 ? (
-            filteredData.map((item) => {
-              return <Card key={item.id} movie={item}></Card>;
-            })
+            filteredData.map((item) => <Card key={item.id} movie={item}></Card>)
           ) : (
             <div className="searchpage">
-              No search results for "{searchitem}"
+              No search results for "{searchItem}"
             </div>
           )}
         </div>

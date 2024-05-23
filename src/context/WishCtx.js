@@ -5,7 +5,9 @@ const WishProvider = ({ children }) => {
   const [addWish, setAddWish] = useState("");
   const [removeWish, setRemoveWish] = useState("");
   const [likeState, setLikeState] = useState(false);
-  const [wishlist, setWishlist] = useState([]);
+  const [wishlist, setWishlist] = useState(
+    JSON.parse(localStorage.getItem("wishlist") || "[]")
+  );
   const addtoWish = (movie) => {
     setLikeState(!likeState);
 
