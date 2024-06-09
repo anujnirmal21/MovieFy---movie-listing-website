@@ -79,22 +79,19 @@
 .fa-heart {
   color: rgba(255, 255, 255, 0.481);
 }
-.wishItem {
-  position: absolute;
-  left: 9rem;
-  top: 1rem;
-}
 
+.wishbtn-sm {
+  position: absolute;
+  right: 6px;
+  top: 5px;
+  z-index: 1000;
+  display: block;
+}
 .fa-heart:hover {
   color: rgba(255, 0, 0, 0.649);
   cursor: pointer;
 }
-#wishbtn-sm {
-  position: absolute;
-  right: 6px;
-  top: 5px;
-  display: none;
-}
+
 @media screen and (max-width: 768px) {
   .cards {
     min-width: 140px;
@@ -104,7 +101,7 @@
     height: 190px;
   }
   #wishbtn-sm {
-    display: block;
+    display: none;
   }
 }
 

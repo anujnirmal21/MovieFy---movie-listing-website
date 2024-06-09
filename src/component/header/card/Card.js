@@ -40,13 +40,15 @@ export default function Card({ movie, type, id }) {
           style={{ textDecoration: "none", color: "white" }}
         >
           <div className="cards">
-            <button onClick={handleClick} id="wishbtn-sm">
-              <i
-                className="fa fa-heart fa-3x"
-                id={id || Wish ? "wished" : "wished-rmv"}
-                aria-hidden="true"
-              ></i>
-            </button>
+            <span className="wishbtn-sm">
+              <button onClick={handleClick} id="wishbtn">
+                <i
+                  className="fa fa-heart fa-2x"
+                  id={id || Wish ? "wished" : "wished-rmv"}
+                  aria-hidden="true"
+                ></i>
+              </button>
+            </span>
             <img
               className="cards_img"
               alt="poster"
@@ -57,15 +59,6 @@ export default function Card({ movie, type, id }) {
               }
             />
             <div className="card_overlay">
-              <span className="wishItem">
-                <button onClick={handleClick} id="wishbtn">
-                  <i
-                    className="fa fa-heart fa-2x"
-                    id={id || Wish ? "wished" : "wished-rmv"}
-                    aria-hidden="true"
-                  ></i>
-                </button>
-              </span>
               <div className="cards_title">
                 {movie ? movie.original_title : ""}
               </div>
