@@ -9,7 +9,7 @@ export default function Movie() {
   const [movieList, setMovieList] = useState([]);
   const { type } = useParams();
   const classValue = type ? type : "popular";
-
+  const loadWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
   const getData = useCallback(() => {
     axios
       .get(
@@ -84,7 +84,18 @@ export default function Movie() {
         </h2>
         <div className="list_cards">
           {movieList.map((movie) => {
-            return <Card key={movie.id} movie={movie} type={type}></Card>;
+            return (
+              <Card
+                key={movie.id}
+                movie={movie}
+                type={type}
+                id={
+                  loadWishlist.some((item) => item.id === movie.id)
+                    ? true
+                    : false
+                }
+              ></Card>
+            );
           })}
         </div>
       </div>

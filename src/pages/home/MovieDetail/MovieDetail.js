@@ -4,6 +4,9 @@ import getMovieTrailer from "../../../utils/getMovieTrailer";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import YoutubePlayer from "../../../component/header/trailer/YoutubePlayer.js";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const MovieDetail = () => {
   const [currentMovieDetail, setMovie] = useState([]);
@@ -42,9 +45,11 @@ const MovieDetail = () => {
     getData();
     window.scrollTo(0, 0);
 
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setLoaded(true);
-    }, 300);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
   }, [id]);
 
   // if (currentMovieDetail !== []) {
@@ -53,9 +58,28 @@ const MovieDetail = () => {
 
   if (!loaded) {
     return (
-      <div className=" flex justify-center h-[90vh] items-center">
-        <div className="w-16 h-16 border-8 border-dashed rounded-full animate-spin border-blue-600"></div>
-      </div>
+      <SkeletonTheme color="#202020" highlightColor="#444">
+        <div className="mt-4 mb-10">
+          {/* YouTube Video Skeleton */}
+          <Skeleton className="lg:w-[80vw] lg:h-[80vh] object-contain w-[100vw] h-[40vh] flex justify-center items-center bg-neutral-800 rounded-md  mb-10 " />
+
+          {/* Spacing */}
+          <Skeleton className=" mt-12 mb-5" height={50} width={300}></Skeleton>
+
+          {/* Poster Image Skeleton */}
+          <Skeleton className=" mb-10" height="80vh" />
+        </div>
+        <div className="mt-4 mb-10">
+          {/* YouTube Video Skeleton */}
+          <Skeleton className="lg:w-[80vw] lg:h-[80vh] object-contain w-[100vw] h-[40vh] flex justify-center items-center bg-neutral-800 rounded-md  mb-10 " />
+
+          {/* Spacing */}
+          <Skeleton className=" mt-12 mb-5" height={50} width={300}></Skeleton>
+
+          {/* Poster Image Skeleton */}
+          <Skeleton className=" mb-10" height="80vh" />
+        </div>
+      </SkeletonTheme>
     );
   }
 
@@ -68,14 +92,17 @@ const MovieDetail = () => {
           </div>
           <h1 className=" text-[3rem] m-8 p-10 font-bold">Movie Overview</h1>
           <div className="movie__intro">
-            <img
-              className="movie__backdrop"
+            <LazyLoadImage
               src={
                 currentMovieDetail && currentMovieDetail.backdrop_path
                   ? `https://image.tmdb.org/t/p/original${currentMovieDetail.backdrop_path}`
-                  : "https://cdn.dribbble.com/userupload/8749861/file/original-fa2a616798cf8402c11a8daecb2206f7.png?resize=400x300&vertical=center"
+                  : "https://placehold.it/838x471?text=Loading"
               }
               alt="img"
+              width="100%"
+              height="inherit"
+              effect="blur"
+              placeholderSrc="https://placehold.it/838x471?text=Loading"
             />
           </div>
           <div className="movie__detail">

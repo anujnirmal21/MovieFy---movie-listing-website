@@ -45,7 +45,7 @@ export default function Wishlist() {
       <div className="wishlist">
         {wishlist.length > 0 && addwishlist !== undefined ? (
           wishlist.map((items) => {
-            return <Card movie={items} key={items.id} id={true}></Card>;
+            return <Card movie={items} key={items.id} id={items.id}></Card>;
           })
         ) : (
           <div className="cards" onClick={scrollUp}>

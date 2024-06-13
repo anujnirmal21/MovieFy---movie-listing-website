@@ -11,6 +11,7 @@ export default function Browse() {
   const [dropdownToggle, setDropDownToggle] = useState(false);
   const [genereFilter, setGenereFilter] = useState([]);
   const [dateFilter, setDateFilter] = useState([]);
+  const loadWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,9 +32,11 @@ export default function Browse() {
 
     fetchData();
 
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setLoaded(true);
     }, 300);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   const handleClick = () => {
@@ -202,7 +205,15 @@ export default function Browse() {
           </div>
           <div className=" flex justify-evenly flex-wrap">
             {data.map((movie) => (
-              <Card movie={movie} key={Math.random()}></Card>
+              <Card
+                movie={movie}
+                key={Math.random()}
+                id={
+                  loadWishlist.some((item) => item.id === movie.id)
+                    ? true
+                    : false
+                }
+              ></Card>
             ))}
           </div>
         </div>

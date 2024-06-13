@@ -3,8 +3,11 @@ import { Carousel } from "react-responsive-carousel";
 import "./TrendToday.css";
 import axios from "axios";
 import Card from "../card/Card";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 export default function TrendToday() {
+  const loadWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+  const [isLoading, setisLoading] = useState(true);
   const [data, setData] = useState([]);
   let i = 0;
   function inc() {
@@ -24,6 +27,24 @@ export default function TrendToday() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setisLoading(false);
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div>
+        <h2 id="headtext">Featured Today</h2>
+        <SkeletonTheme color="#202020" highlightColor="#444">
+          <Skeleton height={400}></Skeleton>
+        </SkeletonTheme>
+      </div>
+    );
+  }
   return (
     <>
       <h2 id="headtext">Featured Today</h2>
@@ -43,10 +64,46 @@ export default function TrendToday() {
               inc();
               return (
                 <div className="trend_card" key={data.id}>
-                  {firstCard && <Card movie={firstCard}></Card>}
-                  {secondCard && <Card movie={secondCard}></Card>}
-                  {thirdCard && <Card movie={thirdCard}></Card>}
-                  {fourthCard && <Card movie={fourthCard}></Card>}
+                  {firstCard && (
+                    <Card
+                      movie={firstCard}
+                      id={
+                        loadWishlist.some((item) => item.id === firstCard.id)
+                          ? true
+                          : false
+                      }
+                    ></Card>
+                  )}
+                  {secondCard && (
+                    <Card
+                      movie={secondCard}
+                      id={
+                        loadWishlist.some((item) => item.id === secondCard.id)
+                          ? true
+                          : false
+                      }
+                    ></Card>
+                  )}
+                  {thirdCard && (
+                    <Card
+                      movie={thirdCard}
+                      id={
+                        loadWishlist.some((item) => item.id === thirdCard.id)
+                          ? true
+                          : false
+                      }
+                    ></Card>
+                  )}
+                  {fourthCard && (
+                    <Card
+                      movie={fourthCard}
+                      id={
+                        loadWishlist.some((item) => item.id === fourthCard.id)
+                          ? true
+                          : false
+                      }
+                    ></Card>
+                  )}
                 </div>
               );
             } else {

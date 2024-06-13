@@ -7,9 +7,11 @@ export default function CardGenre({ data }) {
   const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setisLoading(false);
     }, 500);
+
+    return () => clearTimeout(timeout);
   }, []);
   return (
     <>

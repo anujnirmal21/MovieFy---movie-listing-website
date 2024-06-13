@@ -10,6 +10,7 @@
   height: 300px;
   z-index: 0;
   border: 1px solid rgb(99, 99, 99);
+  background-color: rgb(99, 99, 99);
 }
 
 .cards:hover {

@@ -18,10 +18,10 @@ const WishProvider = ({ children }) => {
 
     setAddWish(movie);
     setRemoveWish("");
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setAddWish("");
     }, 1);
-    return clearTimeout();
+    return () => clearTimeout(timeout);
   };
 
   const removeFromWish = (movie) => {

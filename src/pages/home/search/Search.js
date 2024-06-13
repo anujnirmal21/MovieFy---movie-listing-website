@@ -9,6 +9,7 @@ export default function Search({ input }) {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchFilter, setSearchFilter] = useState([]);
+  const loadWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
 
   useEffect(() => {
     setSearchItem(input);
@@ -54,6 +55,7 @@ export default function Search({ input }) {
       const uniqueSearchFiltered = Array.from(
         new Set(searchFiltered.map((movie) => movie.id))
       ).map((id) => searchFiltered.find((movie) => movie.id === id));
+
       setSearchFilter(
         uniqueSearchFiltered.length > 0
           ? uniqueSearchFiltered
@@ -98,7 +100,17 @@ export default function Search({ input }) {
         <div className="searchSection">
           <h2 className="searchWord">{`Movies results for "${searchItem}"`}</h2>
           {filteredData.length > 0 ? (
-            filteredData.map((item) => <Card key={item.id} movie={item}></Card>)
+            filteredData.map((movie) => (
+              <Card
+                key={movie.id}
+                movie={movie}
+                id={
+                  loadWishlist.some((item) => item.id === movie.id)
+                    ? true
+                    : false
+                }
+              ></Card>
+            ))
           ) : (
             <div className="searchpage">
               No search results for "{searchItem}"

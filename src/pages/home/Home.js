@@ -8,6 +8,8 @@ import TrendToday from "../../component/header/trending/TrendToday";
 import Wishlist from "../../component/header/wishlist/Wishlist";
 import Error from "../home/Error/Error.js";
 import axios from "axios";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function Home() {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -57,12 +59,13 @@ export default function Home() {
                   key={movie.id}
                 >
                   <div className="poster_image">
-                    <img
+                    <LazyLoadImage
                       className="img"
                       src={`https://image.tmdb.org/t/p/original${
                         movie && movie.backdrop_path
                       }`}
                       alt="movie_image"
+                      effect="blur"
                     />
                   </div>
 
