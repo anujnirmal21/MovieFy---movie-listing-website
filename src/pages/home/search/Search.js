@@ -91,12 +91,12 @@ export default function Search({ input }) {
           </div>
         ))}
       </div>
-      {searchItem === "" ? (
+
+      {(searchItem === "" || searchItem === undefined) && (
         <div className="searchpage">moviefy search page</div>
-      ) : (
-        ""
       )}
-      {searchItem !== "" ? (
+
+      {searchItem !== "" && searchItem !== undefined ? (
         <div className="searchSection">
           <h2 className="searchWord">{`Movies results for "${searchItem}"`}</h2>
           {filteredData.length > 0 ? (

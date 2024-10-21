@@ -21,29 +21,31 @@ export default function App() {
   return (
     <>
       <div className="App">
-        <Router>
-          {/* stickynode library */}
-          <Sticky innerZ={5000} top="#header" bottomBoundary="#body">
-            <Header inputValue={getValue}></Header>
-          </Sticky>
-          <Routes>
-            <Route path="/" element={<Home></Home>}></Route>
-            <Route
-              path="/movie/:id"
-              element={<MovieDetail></MovieDetail>}
-            ></Route>
-            <Route
-              path="/search"
-              element={<Search input={init}></Search>}
-            ></Route>
-            <Route path="/news" element={<News></News>}></Route>
-            <Route path="/movies/:type" element={<Home></Home>}></Route>
-            <Route path="/browse" element={<Browse></Browse>}></Route>
-            <Route path="*" element={<Error></Error>}></Route>
-          </Routes>
-        </Router>
+        <div className="app-box">
+          <Router>
+            {/* stickynode library */}
+            <Sticky innerZ={5000} top="#header" bottomBoundary="#body">
+              <Header inputValue={getValue}></Header>
+            </Sticky>
+            <Routes>
+              <Route path="/" element={<Home></Home>}></Route>
+              <Route
+                path="/movie/:id"
+                element={<MovieDetail></MovieDetail>}
+              ></Route>
+              <Route
+                path="/search"
+                element={<Search input={init}></Search>}
+              ></Route>
+              <Route path="/news" element={<News></News>}></Route>
+              <Route path="/movies/:type" element={<Home></Home>}></Route>
+              <Route path="/browse" element={<Browse></Browse>}></Route>
+              <Route path="*" element={<Error></Error>}></Route>
+            </Routes>
+          </Router>
+          <Footer></Footer>
+        </div>
       </div>
-      <Footer></Footer>
     </>
   );
 }

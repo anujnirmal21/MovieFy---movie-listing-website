@@ -1,18 +1,21 @@
 .App {
   background: rgb(18, 18, 18);
+}
+.app-box {
+  background: rgb(32, 32, 32);
   color: rgb(245, 245, 245);
   font-family: sans-serif;
-  width: 80%;
+  width: 80vw;
   margin-left: 10%;
   margin-right: 10%;
   box-sizing: border-box;
 }
 
 @media (max-width: 960px) {
-  .App {
-    width: 100%;
-    margin-left: 0%;
-    margin-right: 0%;
+  .app-box {
+    width: 100vw;
+    margin-left: 0px;
+    margin-right: 0px;
   }
   :root {
     font-size: 70%;

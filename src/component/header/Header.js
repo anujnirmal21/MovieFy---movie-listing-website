@@ -16,7 +16,7 @@ export default function Header({ inputValue }) {
   }
 
   return (
-    <div className="header">
+    <div className="header pl-5 pr-5">
       <div className="header-left">
         <Link to="/" style={{ textDecoration: "none" }}>
           <div className="logo">

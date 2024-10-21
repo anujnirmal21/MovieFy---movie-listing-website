@@ -121,11 +121,12 @@ span {
     flex-direction: row;
     height: 100px;
     width: 100%;
+    padding: 5px;
     justify-content: space-between;
   }
   .header-left {
     width: 80%;
-    gap: 30px;
+    gap: 40px;
   }
   .header-right {
     margin-right: 8vw;
@@ -151,6 +152,6 @@ span {
 
 @media (max-width: 520px) {
   .header-left {
-    gap: 50px;
+    gap: 60px;
   }
 }

@@ -35,7 +35,7 @@ const YoutubePlayer = ({ videoUrl }) => {
               fill="currentFill"
             />
           </svg>
-          <span class="sr-only">Loading...</span>
+          <span className="sr-only">Loading...</span>
         </div>
       </div>
     );
@@ -44,7 +44,7 @@ const YoutubePlayer = ({ videoUrl }) => {
     <div className="container object-contain">
       <iframe
         title="YouTube Video Player"
-        className="lg:w-[80vw] lg:h-[80vh] object-contain w-[100vw] h-[40vh]  "
+        className=" lg:w-[80vw] w-[100vw] lg:h-[80vh] h-[60vh]"
         src={`https://www.youtube.com/embed/${videoId}`}
         allowFullScreen
       ></iframe>
