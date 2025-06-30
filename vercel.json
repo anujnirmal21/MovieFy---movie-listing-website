@@ -1,6 +1,6 @@
 {
   "functions": {
-    "/api/tmdb/[[...path]].js": {
+    "api/tmdb/[[...path]].js": {
       "runtime": "edge"
     }
   }
