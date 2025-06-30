@@ -1,8 +1,0 @@
-{
-  "output": "export",
-  "functions": {
-    "api/tmdb/[[...path]].js": {
-      "runtime": "edge"
-    }
-  }
-}
