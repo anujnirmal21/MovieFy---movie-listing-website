@@ -10,10 +10,12 @@ import Error from "../home/Error/Error.js";
 import axios from "axios";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import RecommandedAlert from "../../component/RecommandedAlert.js";
 
 export default function Home() {
   const [popularMovies, setPopularMovies] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [close, setClose] = useState(true);
   const [error, setError] = useState(null); // New state to handle errors
 
   useEffect(() => {
@@ -93,7 +95,8 @@ export default function Home() {
           <Wishlist></Wishlist>
         </div>
       ) : (
-        <div className=" flex justify-center h-[90vh] items-center">
+        <div className=" flex justify-center h-[90vh] items-center relative">
+          {close && <RecommandedAlert setClose={setClose} />}
           <div className="w-16 h-16 border-8 border-dashed rounded-full animate-spin border-blue-600"></div>
         </div>
       )}
