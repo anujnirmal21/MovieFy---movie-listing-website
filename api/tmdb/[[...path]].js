@@ -2,8 +2,8 @@ export const config = {
   runtime: "edge",
 };
 
-export async function GET(req: Request) {
-  const TMDB_API_KEY = "4e44d9029b1270a757cddc766a1bcb63";
+export async function GET(req) {
+  const TMDB_API_KEY = process.env.TMDB_API_KEY;
   const url = new URL(req.url);
   const path = url.pathname.replace("/api/tmdb/", "");
   const search = url.search;
